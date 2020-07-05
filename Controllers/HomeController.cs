@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using EmployeeManagement.Models;
+using EmployeeManagement.ViewModels;
 namespace EmployeeManagement.Controllers
 {
     public class HomeController : Controller
@@ -9,9 +10,11 @@ namespace EmployeeManagement.Controllers
         {
             _employeeRepository=employeeRepository;
         }
-        public string Index(){
+        public ViewResult Index(){
             //return Json(new { id=1,name="Pallab Nag"});
-            return _employeeRepository.GetEmployee(1).Name;
+            //return _employeeRepository.GetEmployee(1).Name;
+            var model=_employeeRepository.GetAllEmployee();
+            return View(model);
         }
         /*public ObjectResult Details(){
             Employee model= _employeeRepository.GetEmployee(1);
@@ -19,10 +22,20 @@ namespace EmployeeManagement.Controllers
         
         }*/
         public ViewResult Details(){
-            Employee model= _employeeRepository.GetEmployee(1);
-            ViewData["employee"]=model;
-            ViewData["title"]="Page Title";
-            return View();
+            //Employee model= _employeeRepository.GetEmployee(1);
+            //ViewBag.employee=model; //for viewbag no type casting required
+           // ViewData["title"]="Page Title";
+            //VieBag and ViewData are not strongly typed views we need to use @model property to add strongly typed views
+            //return View(model);
+            //We will be using a ViewModel Class for the has all the data for the view
+            HomeDetailsViewModel homeDetailsViewModel= new HomeDetailsViewModel(){
+                Employee = _employeeRepository.GetEmployee(1),
+                PageTitle = "Employee Details"
+            };
+            return View(homeDetailsViewModel);
+        
+            
+
         
         }
 
