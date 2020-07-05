@@ -35,11 +35,11 @@ namespace EmployeeManagement
             app.UseDefaultFiles(defaultFilesOptions); //uses the default.html*/
             app.UseStaticFiles(); //loads static files from wwwroot
             //app.UseMvcWithDefaultRoute();
-            app.UseMvc(); //Using Attribute Routing
-            /*app.UseMvc(routes =>
+            //app.UseMvc(); //Using Attribute Routing
+            app.UseMvc(routes =>
                 {
                     routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
-                });*/
+                });
 
 
             //using file server middleware instead of the above

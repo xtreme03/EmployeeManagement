@@ -3,7 +3,7 @@ using EmployeeManagement.Models;
 using EmployeeManagement.ViewModels;
 namespace EmployeeManagement.Controllers
 {
-    [Route("[controller]/[action]")]
+    //[Route("[controller]/[action]")]
     public class HomeController : Controller
     {   
         private IEmployeeRepository _employeeRepository;
@@ -11,8 +11,8 @@ namespace EmployeeManagement.Controllers
         {
             _employeeRepository=employeeRepository;
         }
-        [Route("~/Home")]
-        [Route("~/")]
+        //[Route("~/Home")]
+        //[Route("~/")]
         public ViewResult Index(){
             //return Json(new { id=1,name="Pallab Nag"});
             //return _employeeRepository.GetEmployee(1).Name;
@@ -24,7 +24,7 @@ namespace EmployeeManagement.Controllers
             return new ObjectResult(model);
         
         }*/
-        [Route("{id?}")]
+       // [Route("{id?}")]
         public ViewResult Details(int? id){
             //Employee model= _employeeRepository.GetEmployee(1);
             //ViewBag.employee=model; //for viewbag no type casting required
