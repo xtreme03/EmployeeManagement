@@ -34,7 +34,12 @@ namespace EmployeeManagement
             defaultFilesOptions.DefaultFileNames.Add("foo.html");
             app.UseDefaultFiles(defaultFilesOptions); //uses the default.html*/
             app.UseStaticFiles(); //loads static files from wwwroot
-            app.UseMvcWithDefaultRoute();
+            //app.UseMvcWithDefaultRoute();
+            app.UseMvc(routes =>
+                {
+                    routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                });
+
             //using file server middleware instead of the above
             //FileServerOptions fileServerOptions= new FileServerOptions();
             //fileServerOptions.DefaultFilesOptions.DefaultFileNames.Clear();
